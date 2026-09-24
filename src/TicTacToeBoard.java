@@ -1,5 +1,6 @@
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Nested;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -66,7 +67,8 @@ class TTTTester {
         public void setup() {
             board1 = new TicTacToeBoard();
         }
-        @ParameterizedTest
+
+        @Test
         public void testTTTBoard() {
             for(int row = 0; row < 3; row++) {
                 for(int col = 0; col < 3; col++) {
@@ -75,8 +77,44 @@ class TTTTester {
             }
         }
 
-        public void testGetCell(int row, int col) {
+        @Test
+        public void testGetCell() {
 
+            for(int row = 0;row < 3; row++) {
+                for(int col = 0; col < 3; col++) {
+                    board1.board[row][col] = 0;
+                }
+            }
+            for(int row = 0; row < 3; row++) {
+                for(int col = 0; col < 3; col++)
+                    assertEquals(getCell(row,col), board1.board[row][col]);
+            }
+
+
+            board1.board[0][0] = 1;
+            board1.board[0][2] = 2;
+            for(int row = 0; row < 3; row++) {
+                for(int col = 0; col < 3; col++)
+                    assertEquals(getCell(row,col), board1.board[row][col]);
+            }
+
+            for(int col = 0; col < 3; col++) {
+                board1.board[0][col] = 1;
+            }
+            for(int col = 0; col < 2; col++) {
+                board1.board[2][col] = 2;
+            }
+            for(int row = 0; row < 3; row++) {
+                for(int col = 0; col < 3; col++)
+                    assertEquals(getCell(row,col), board1.board[row][col]);
+            }
+
+
+            board1.board = new int[][]{{1,2,1}, {2,1,1},{2,1,2}};
+            for(int row = 0; row < 3; row++) {
+                for(int col = 0; col < 3; col++)
+                    assertEquals(getCell(row,col), board1.board[row][col]);
+            }
 
         }
 }
