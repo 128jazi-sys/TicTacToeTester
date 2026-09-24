@@ -1,3 +1,9 @@
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Nested;
+import org.junit.jupiter.params.ParameterizedTest;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 public class TicTacToeBoard {
     private int[][] board;
     public int EMPTY = 0;
@@ -5,7 +11,7 @@ public class TicTacToeBoard {
     public int PLAYER_O = 2;
 
     public TicTacToeBoard() {
-
+        board = new int[3][3];
     }
 
     public int getCell(int row, int col) {
@@ -55,7 +61,18 @@ public class TicTacToeBoard {
 
 @Nested
 class TTTTester {
+        TicTacToeBoard board = new TicTacToeBoard();
+        @BeforeEach
+        @ParameterizedTest
+        public void testTicTacToeBoard() {
+            for(int row = 0; row < 3; row++) {
+                for(int col = 0; col < 3; col++) {
+                    assertEquals(TicTacToeBoard.EMPTY, getCell(row, col));
+                }
+            }
+        }
 
+        public void getCell(int row, int col)
 }
 
     public static void main(String[] args) {
