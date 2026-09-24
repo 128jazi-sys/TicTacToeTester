@@ -3,7 +3,7 @@ import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class TicTacToeBoard {
     private int[][] board;
@@ -117,6 +117,36 @@ class TTTTester {
             }
 
         }
+
+        @Test
+        public void testIsFull() {
+            for(int row = 0;row < 3; row++) {
+                for(int col = 0; col < 3; col++) {
+                    board1.board[row][col] = 0;
+                }
+            }
+            assertFalse(board1.isFull());
+
+
+            board1.board[0][0] = 1;
+            board1.board[0][2] = 2;
+            assertFalse(board1.isFull());
+
+            for(int col = 0; col < 3; col++) {
+                board1.board[0][col] = 1;
+            }
+            for(int col = 0; col < 2; col++) {
+                board1.board[2][col] = 2;
+            }
+            assertFalse(board1.isFull());
+
+
+            board1.board = new int[][]{{1,2,1}, {2,1,1},{2,1,2}};
+            assertTrue(board1.isFull());
+        }
+
+        @Test
+        public void testReset
 }
 
     public static void main(String[] args) {
