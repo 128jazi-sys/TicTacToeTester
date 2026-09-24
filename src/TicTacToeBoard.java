@@ -6,9 +6,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class TicTacToeBoard {
     private int[][] board;
-    public int EMPTY = 0;
-    public int PLAYER_X = 1;
-    public int PLAYER_O = 2;
+    public static int EMPTY = 0;
+    public static int PLAYER_X = 1;
+    public static int PLAYER_O = 2;
 
     public TicTacToeBoard() {
         board = new int[3][3];
@@ -61,18 +61,24 @@ public class TicTacToeBoard {
 
 @Nested
 class TTTTester {
-        TicTacToeBoard board = new TicTacToeBoard();
+        TicTacToeBoard board1;
         @BeforeEach
+        public void setup() {
+            board1 = new TicTacToeBoard();
+        }
         @ParameterizedTest
-        public void testTicTacToeBoard() {
+        public void testTTTBoard() {
             for(int row = 0; row < 3; row++) {
                 for(int col = 0; col < 3; col++) {
-                    assertEquals(TicTacToeBoard.EMPTY, getCell(row, col));
+                    assertEquals(TicTacToeBoard.EMPTY, board1.board[row][col]);
                 }
             }
         }
 
-        public void getCell(int row, int col)
+        public void testGetCell(int row, int col) {
+
+
+        }
 }
 
     public static void main(String[] args) {
